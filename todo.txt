@@ -1,0 +1,2 @@
+- new button for kanban board
+- card form prompt/popup

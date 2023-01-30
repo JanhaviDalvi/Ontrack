@@ -1,0 +1,16 @@
+/* Kanban Board CSS */
+.card-list {
+  margin-bottom: 10px;
+}
+
+.column-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.add-card-btn {
+    position: absolute;
+    right: 10px;
+    top:
+}

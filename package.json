@@ -1,0 +1,22 @@
+{
+  "name": "ontrack_source_code",
+  "version": "1.0.0",
+  "description": "Productivity tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JanhaviDalvi/Ontrack.git"
+  },
+  "author": "Miss Janhavi Dalvi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JanhaviDalvi/Ontrack/issues"
+  },
+  "homepage": "https://github.com/JanhaviDalvi/Ontrack#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

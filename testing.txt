@@ -1,1 +1,31 @@
-sample text
+ontrack/
+  |__ controllers/
+  |   |__ auth.js
+  |   |__ kanban.js
+  |   |__ habits.js
+  |   |__ rewards.js
+  |
+  |__ models/
+  |   |__ task.js
+  |   |__ habit.js
+  |   |__ reward.js
+  |
+  |__ public/
+  |   |__ styles/
+  |   |   |__ main.css
+  |   |
+  |   |__ images/
+  |   |   |__ ...
+  |   |
+  |   |__ scripts/
+  |   |   |__ main.js
+  |
+  |__ views/
+  |   |__ index.ejs
+  |   |__ kanban.ejs
+  |   |__ habits.ejs
+  |   |__ rewards.ejs
+  |
+  |__ app.js
+  |__ package.json
+  |__ .env

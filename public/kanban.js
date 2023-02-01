@@ -44,17 +44,17 @@ submitBtn.addEventListener("click", function () {
     // create the tag
     var tag = document.createElement("div");
     tag.classList.add("card_tag");
-    tag.innerHTML = "Tag: " +cardTag;
+    tag.innerHTML = "Tag: " + cardTag;
 
     // create the priority
     var priority = document.createElement("div");
     priority.classList.add("card_priority");
-    priority.innerHTML ="Priority: " +cardPriority;
+    priority.innerHTML = "Priority: " + cardPriority;
 
     // create the due date
     var dueDate = document.createElement("div");
     dueDate.classList.add("card_duedate");
-    dueDate.innerHTML = "Due Date: " +cardDueDate;
+    dueDate.innerHTML = "Due Date: " + cardDueDate;
 
     // append elements to the card body
     cardBody.appendChild(description);
@@ -68,10 +68,22 @@ submitBtn.addEventListener("click", function () {
 
     // append the new card to the to-do column
     var todo_column = document.getElementById("todo_column");
+    newCard.setAttribute("draggable", "true")
     todo_column.appendChild(newCard);
 
     $('#exampleModal').modal('toggle');
     document.getElementById("kanban_form").reset();
+
+    var all_cards = document.querySelectorAll(".card");
+    console.log(all_cards);
+    all_cards.forEach(each_card => {
+        each_card.addEventListener("dragstart", function (event) {
+            each_card.setAttribute("id", "cardId");
+            event.dataTransfer.setData("text/plain", event.target.id);
+            console.log(event.target.id);
+            console.log("heyy");
+        });
+    });
 });
 
 var closecard = document.getElementById("closecard");
@@ -80,4 +92,26 @@ var closecard = document.getElementById("closecard");
 closecard.addEventListener("click", function () {
     $('#exampleModal').modal('toggle');
     document.getElementById("kanban_form").reset();
+});
+
+// dragging
+
+const column1 = document.getElementById("todo_column");
+const column2 = document.getElementById("inprogress_column");
+
+
+column2.addEventListener("dragover", function (event) {
+    event.preventDefault();
+    console.log("heyy2");
+});
+
+column2.addEventListener("drop", function (event) {
+    event.preventDefault();
+    const id = event.dataTransfer.getData("text/plain");
+    const draggableElement = document.getElementById(id);
+    console.log(draggableElement);
+    draggableElement.setAttribute("draggable", "true");
+    column2.appendChild(draggableElement);
+    draggableElement.removeAttribute("id");
+    console.log("heyy3");
 });

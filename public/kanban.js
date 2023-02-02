@@ -49,6 +49,8 @@ submitBtn.addEventListener("click", function () {
     // create the priority
     var priority = document.createElement("div");
     priority.classList.add("card_priority");
+
+    
     priority.innerHTML = "Priority: " + cardPriority;
 
     // create the due date
@@ -81,6 +83,12 @@ submitBtn.addEventListener("click", function () {
             each_card.setAttribute("id", "cardId");
             event.dataTransfer.setData("text/plain", event.target.id);
             console.log(event.target.id);
+            event.target.style.opacity = 0.5;
+            event.target.style.border = "1px solid black";
+        });
+        each_card.addEventListener("dragend", function (event) {
+            event.target.style.opacity = 1;
+            event.target.style.border = "";
         });
     });
 });
@@ -94,10 +102,26 @@ closecard.addEventListener("click", function () {
 });
 
 // dragging
-
 const column1 = document.getElementById("todo_column");
 const column2 = document.getElementById("inprogress_column");
+const column3 = document.getElementById("completed_column");
 
+
+column1.addEventListener("dragover", function (event) {
+    event.preventDefault();
+    console.log("heyy2");
+});
+
+column1.addEventListener("drop", function (event) {
+    event.preventDefault();
+    const id = event.dataTransfer.getData("text/plain");
+    const draggableElement = document.getElementById(id);
+    console.log(draggableElement);
+    draggableElement.setAttribute("draggable", "true");
+    column1.appendChild(draggableElement);
+    draggableElement.removeAttribute("id");
+    console.log("heyy3");
+});
 
 column2.addEventListener("dragover", function (event) {
     event.preventDefault();
@@ -113,4 +137,49 @@ column2.addEventListener("drop", function (event) {
     column2.appendChild(draggableElement);
     draggableElement.removeAttribute("id");
     console.log("heyy3");
+});
+
+column3.addEventListener("dragover", function (event) {
+    event.preventDefault();
+    console.log("heyy2");
+});
+
+column3.addEventListener("drop", function (event) {
+    event.preventDefault();
+    const id = event.dataTransfer.getData("text/plain");
+    const draggableElement = document.getElementById(id);
+    console.log(draggableElement);
+    draggableElement.setAttribute("draggable", "true");
+    column3.appendChild(draggableElement);
+    draggableElement.removeAttribute("id");
+    console.log("heyy3");
+});
+
+
+// for sort button
+const sort = document.getElementById("sort-select");
+let cards = document.querySelectorAll(".card");
+cards = Object.values(cards);
+console.log(cards);
+sort.addEventListener("change", function () {
+    let sortBy = sort.value;
+
+    if (sortBy === "priority") {
+        cards.sort(function (a, b) {
+            let priorityA = parseInt(a.querySelector(".card_priority").textContent);
+            let priorityB = parseInt(b.querySelector(".card_priority").textContent);
+            return priorityA - priorityB;
+        });
+    } else if (sortBy === "due-date") {
+        cards.sort(function (a, b) {
+            let dueDateA = new Date(a.querySelector(".card_duedate").textContent);
+            let dueDateB = new Date(b.querySelector(".card_duedate").textContent);
+            return dueDateA - dueDateB;
+        });
+    }
+
+    let kanbanBoard = document.getElementById("todo_column");
+    for (let i = 0; i < cards.length; i++) {
+        kanbanBoard.appendChild(cards[i]);
+    }
 });

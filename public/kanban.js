@@ -81,7 +81,6 @@ submitBtn.addEventListener("click", function () {
             each_card.setAttribute("id", "cardId");
             event.dataTransfer.setData("text/plain", event.target.id);
             console.log(event.target.id);
-            console.log("heyy");
         });
     });
 });

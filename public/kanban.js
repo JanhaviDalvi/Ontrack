@@ -49,9 +49,17 @@ submitBtn.addEventListener("click", function () {
     // create the priority
     var priority = document.createElement("div");
     priority.classList.add("card_priority");
-
-    
-    priority.innerHTML = "Priority: " + cardPriority;
+    let Prioritytext;
+    if(cardPriority == 1 ){
+        Prioritytext = "Low";
+    }
+    else if (cardPriority == 2) {
+        Prioritytext = "Medium";
+    }
+    else {
+        Prioritytext = "High";
+    }
+    priority.innerHTML = "Priority: " + Prioritytext;
 
     // create the due date
     var dueDate = document.createElement("div");
@@ -77,7 +85,7 @@ submitBtn.addEventListener("click", function () {
     document.getElementById("kanban_form").reset();
 
     var all_cards = document.querySelectorAll(".card");
-    console.log(all_cards);
+    console.log("sdjfjsdkfhj", all_cards);
     all_cards.forEach(each_card => {
         each_card.addEventListener("dragstart", function (event) {
             each_card.setAttribute("id", "cardId");
@@ -158,14 +166,23 @@ column3.addEventListener("drop", function (event) {
 
 // for sort button
 const sort = document.getElementById("sort-select");
-let cards = document.querySelectorAll(".card");
-cards = Object.values(cards);
-console.log(cards);
 sort.addEventListener("change", function () {
     let sortBy = sort.value;
+    // var columns = [column1, column2, column3];
+    // for(let i = 0; i < columns.length; i++){
+    //     sort_cards(columns[i], sortBy);
+    // }
+    sort_cards(column1, sortBy);
+});
 
+function sort_cards(column, sortBy){
+    
+    let cards = Array.from(column.querySelectorAll(".card"));
+    console.log(sortBy);
+    console.log(cards);
     if (sortBy === "priority") {
         cards.sort(function (a, b) {
+            console.log("hey");
             let priorityA = parseInt(a.querySelector(".card_priority").textContent);
             let priorityB = parseInt(b.querySelector(".card_priority").textContent);
             return priorityA - priorityB;
@@ -177,9 +194,8 @@ sort.addEventListener("change", function () {
             return dueDateA - dueDateB;
         });
     }
-
-    let kanbanBoard = document.getElementById("todo_column");
+    console.log(cards);
     for (let i = 0; i < cards.length; i++) {
-        kanbanBoard.appendChild(cards[i]);
+        column.appendChild(cards[i]);
     }
-});
+}

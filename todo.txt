@@ -1,2 +1,2 @@
-- new button for kanban board
-- card form prompt/popup
+- push to github
+- only 1 time mark as done in day 

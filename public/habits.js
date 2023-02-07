@@ -1,5 +1,6 @@
 // get the submit button
 var submitBtn = document.getElementById("submitCard");
+var today = new Date().toDateString();
 
 // attach an event listener to the submit button
 submitBtn.addEventListener("click", function () {
@@ -7,12 +8,24 @@ submitBtn.addEventListener("click", function () {
   var habitName = document.getElementById("habitName").value;
   var habitTag = document.getElementById("habitTag").value;
   var habitPriority = document.getElementById("habitPriority").value;
-  var habitStreak = document.getElementById("habitStreak").value;
+  // var habitStreak = document.getElementById("habitStreak").value;
   var habitCreationDate = document.getElementById("habitCreationDate").value;
+
+  // if (habitStreak === "") {
+  //   habitStreak = 0;
+  // }
 
   // create a new card element
   var newCard = document.createElement("div");
   newCard.classList.add("card");
+
+  // let cards = [];
+//   class Card {
+//     constructor(habit) {
+//       this.habit = habit;
+//       this.streak = 0;
+//     }
+// }
 
   // create the card header
   var cardHeader = document.createElement("div");
@@ -36,6 +49,7 @@ submitBtn.addEventListener("click", function () {
   // create the Streak
   var streak = document.createElement("div");
   streak.classList.add("habit_streak");
+  var habitStreak = 0;
   streak.innerHTML = "Streak: " + habitStreak;
 
   // create the creation date
@@ -47,6 +61,13 @@ submitBtn.addEventListener("click", function () {
   var habitButton = document.createElement("button");
   habitButton.classList.add("habit_button");
   habitButton.innerHTML = "Mark as Doned";
+
+  // function for habitButton
+  habitButton.addEventListener("click", function() {
+    habitStreak++;
+    streak.innerHTML = "Streak: " + habitStreak;
+  });
+  
 
   // append elements to the card body
   cardBody.appendChild(tag);
@@ -70,9 +91,10 @@ submitBtn.addEventListener("click", function () {
 });
 
 var closecard = document.getElementById("closecard");
-
 // attach an event listener to the submit button
 closecard.addEventListener("click", function () {
     $('#exampleModal').modal('toggle');
     document.getElementById("habit_form").reset();
 });
+
+

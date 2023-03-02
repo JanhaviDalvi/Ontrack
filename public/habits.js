@@ -19,14 +19,6 @@ submitBtn.addEventListener("click", function () {
   var newCard = document.createElement("div");
   newCard.classList.add("card");
 
-  // let cards = [];
-//   class Card {
-//     constructor(habit) {
-//       this.habit = habit;
-//       this.streak = 0;
-//     }
-// }
-
   // create the card header
   var cardHeader = document.createElement("div");
   cardHeader.classList.add("card-header");
@@ -62,12 +54,52 @@ submitBtn.addEventListener("click", function () {
   habitButton.classList.add("habit_button");
   habitButton.innerHTML = "Mark as Doned";
 
-  // function for habitButton
-  habitButton.addEventListener("click", function() {
+  // // function for habitButton
+  // habitButton.addEventListener("click", function() {
+  //   habitStreak++;
+  //   streak.innerHTML = "Streak: " + habitStreak;
+  // });
+  
+    // // function for habitButton
+    // habitButton.addEventListener("click", function() {
+    //   // get the current date
+    //   var currentDate = new Date().toDateString();
+  
+    //   // check if the button has already been clicked today
+    //   if (habitButton.dataset.date === currentDate) {
+    //     alert("You have already marked this habit as done today!");
+    //   } else {
+    //     // update the streak and disable the button
+    //     habitStreak++;
+    //     streak.innerHTML = "Streak: " + habitStreak;
+    //     // habitButton.disabled = true;
+    //     habitButton.dataset.date = currentDate;
+    //   }
+    // });
+    
+    // function for habitButton
+habitButton.addEventListener("click", function() {
+  // get the current date
+  var currentDate = new Date().toDateString();
+
+  // check if the button has already been clicked today
+  if (habitButton.dataset.date === currentDate) {
+    alert("You have already marked this habit as done today!");
+  } else {
+    // check if the button was clicked within the last 24 hours
+    var lastClickedDate = new Date(habitButton.dataset.date);
+    var hoursSinceLastClicked = (new Date() - lastClickedDate) / 3600000;
+    if (hoursSinceLastClicked > 24) {
+      // reset the streak to 0
+      habitStreak = 0;
+    }
+    // update the streak and disable the button
     habitStreak++;
     streak.innerHTML = "Streak: " + habitStreak;
-  });
-  
+    // habitButton.disabled = true;
+    habitButton.dataset.date = currentDate;
+  }
+});
 
   // append elements to the card body
   cardBody.appendChild(tag);

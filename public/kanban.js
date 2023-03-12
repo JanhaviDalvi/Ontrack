@@ -1,5 +1,3 @@
-// const User = require('../User');
-
 var cardName, cardDescription, cardTag, cardPriority, cardDueDate, currentDate, status;
 
 // get the submit button

@@ -3,6 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const authRoutes = require('./routes/auth');
+const avatarRoutes = require('./routes/avatarRoutes');
 var cookieParser = require("cookie-parser")
 var flash = require('connect-flash');
 
@@ -14,6 +15,7 @@ app.use(session({ secret: 'your-secret-key', resave: false, saveUninitialized: t
 app.set("view engine", "ejs");
 app.use(express.static('public'));
 app.use('/', authRoutes);
+app.use('/', avatarRoutes);
 app.use(cookieParser("your-secret-key"));
 app.use(flash());
 

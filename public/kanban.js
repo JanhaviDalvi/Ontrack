@@ -69,7 +69,7 @@ submitBtn.addEventListener("click", function () {
     // create the description
     var description = document.createElement("div");
     description.classList.add("card_discription");
-    description.innerHTML = cardDescription;
+    description.innerHTML = "Description: " + cardDescription;
 
 
     // create the tag

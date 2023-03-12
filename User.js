@@ -55,6 +55,27 @@ class User {
 	async comparePassword(password) {
 		return await bcrypt.compare(password, this.password);
 	}
+
+	// to save a task in db
+	static async save_task(task_name, description, due_date, date_creation, status, tag, priority, userId){
+		const client = await pool.connect();
+		try {
+			const result = await client.query(
+				'INSERT INTO task (task_name, description, due_date, date_creation, status, tag, priority, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING task_id',
+				[task_name, description, due_date, date_creation, status, tag, priority, userId]
+			);
+			return result.rows[0];
+		} 
+		catch(e){
+			console.log(e.message)
+		}
+		finally {
+			client.release();
+		}
+	}
+
+	// to get tasks of todo, inprogress and completed of user
+
 }
 
 module.exports = User;

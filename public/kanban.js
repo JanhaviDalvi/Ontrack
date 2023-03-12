@@ -1,33 +1,9 @@
-// const { Pool } = require('pg');
-// const sessionObj = require('../app');
-// const pool = new Pool({
-// 	user: 'postgres',
-// 	host: 'localhost',
-// 	database: 'ontrackdb',
-// 	password: 'postgres',
-// 	port: 5432,
-// });
-// console.log(sessionObj.);
+// const User = require('../User');
+
+var cardName, cardDescription, cardTag, cardPriority, cardDueDate, currentDate, status;
+
 // get the submit button
 var submitBtn = document.getElementById("submitCard");
-
-// async function save_to_db(){
-// 		try {
-//             const client = await pool.connect();
-// 			const result = await client.query(
-// 				'INSERT INTO task (task_name, description, due_date, date_creation, status, tag, priority, user_id) VALUES ($1, $2, $3, CURRENT_DATE, $4, $5, $6, $7) RETURNING task_id',
-// 				[cardName, cardDescription, cardDueDate, 'todo', cardTag, cardPriority, ]
-// 			);
-// 			this.id = result.rows[0].id;
-// 			console.log('jkdshj');
-// 		} 
-// 		catch(e){
-// 			console.log(e.message)
-// 		}
-// 		finally {
-// 			client.release();
-// 		}
-// }
 
 // attach an event listener to the submit button
 submitBtn.addEventListener("click", function () {
@@ -50,8 +26,16 @@ submitBtn.addEventListener("click", function () {
     var cardDueDate = document.getElementById("cardDueDate").value;
     console.log(cardDueDate);
 
-    // db insert 
+    const currentDate = new Date().toDateString();
 
+    var status = 'todo';
+
+    // // db insert 
+    // try {
+    //     User.save_task(task_name, description, due_date, date_creation, status, tag, priority, userId)
+    // } catch (error) {
+    //     console.log(error.message);
+    // }
 
     // create a new card element
     var newCard = document.createElement("div");
@@ -229,4 +213,4 @@ function sort_cards(column, sortBy){
     for (let i = 0; i < cards.length; i++) {
         column.appendChild(cards[i]);
     }
-}
+}  

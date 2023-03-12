@@ -12,13 +12,13 @@
 
 <body>
     <div class="container">
-        <!-- <p><%= avatar_character %></p> -->
 
-         <!-- user avatar -->
+        <!-- user avatar -->
         <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle d-flex align-items-center" href="#" role="button"
                 id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="../images/<%= avatar_character %>.png" class="rounded-circle me-2" width="30" height="30" alt="User Avatar">
+                <img src="../images/<%= avatar_character %>.png" class="rounded-circle me-2" width="30" height="30"
+                    alt="User Avatar">
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="userDropdown">
@@ -74,7 +74,7 @@
 
         <!-- Modal -->
         <div style="margin-top: 20px;"></div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add Task
         </button>
 
@@ -129,6 +129,7 @@
             </div>
         </div>
 
+
     </div>
 
 
@@ -153,9 +154,14 @@
 
     </script> -->
     <!-- bootstrap js -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	<!-- jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- user scripts -->
     <script src="/kanban.js"></script>
 </body>

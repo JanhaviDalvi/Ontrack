@@ -1,4 +1,5 @@
 var cardName, cardDescription, cardTag, cardPriority, cardDueDate, currentDate, status;
+console.log(userId);
 
 // get the submit button
 var submitBtn = document.getElementById("submitCard");
@@ -28,12 +29,12 @@ submitBtn.addEventListener("click", function () {
 
     var status = 'todo';
 
-    // // db insert 
-    // try {
-    //     User.save_task(task_name, description, due_date, date_creation, status, tag, priority, userId)
-    // } catch (error) {
-    //     console.log(error.message);
-    // }
+    // db insert 
+    try {
+        User.save_task(task_name, description, due_date, date_creation, status, tag, priority, userId)
+    } catch (error) {
+        console.log(error.message);
+    }
 
     // create a new card element
     var newCard = document.createElement("div");

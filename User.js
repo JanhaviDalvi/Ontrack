@@ -7,7 +7,7 @@ const pool = new Pool({
 	password: 'postgres',
 	port: 5432,
 });
-
+var c = 'cc';
 class User {
 	constructor(email, password, id=null) {
 		this.email = email;

@@ -8,33 +8,33 @@ var submitBtn = document.getElementById("submitCard");
 submitBtn.addEventListener("click", function () {
     // get the value of the cardName input
     var cardName = document.getElementById("cardName").value;
-    console.log(cardName);
+    // console.log(cardName);
 
     var cardDescription = document.getElementById("cardDescription").value;
-    console.log(cardDescription);
+    // console.log(cardDescription);
 
     var cardTag = document.getElementById("cardTag").value;
-    console.log(cardTag);
+    // console.log(cardTag);
 
     var cardPriority = document.getElementById("cardPriority").value;
-    console.log(cardPriority);
+    // console.log(cardPriority);
 
     // var cardCreationDate = document.getElementById("cardCreationDate").value;
     // console.log(cardCreationDate);
 
     var cardDueDate = document.getElementById("cardDueDate").value;
-    console.log(cardDueDate);
+    // console.log(cardDueDate);
 
     const currentDate = new Date().toDateString();
 
     var status = 'todo';
 
-    // db insert 
-    try {
-        User.save_task(task_name, description, due_date, date_creation, status, tag, priority, userId)
-    } catch (error) {
-        console.log(error.message);
-    }
+    // // db insert 
+    // try {
+    //     User.save_task(task_name, description, due_date, date_creation, status, tag, priority, userId)
+    // } catch (error) {
+    //     console.log(error.message);
+    // }
 
     // create a new card element
     var newCard = document.createElement("div");
@@ -99,7 +99,7 @@ submitBtn.addEventListener("click", function () {
     document.getElementById("kanban_form").reset();
 
     var all_cards = document.querySelectorAll(".card");
-    console.log("sdjfjsdkfhj", all_cards);
+    // console.log("sdjfjsdkfhj", all_cards);
     all_cards.forEach(each_card => {
         each_card.addEventListener("dragstart", function (event) {
             each_card.setAttribute("id", "cardId");

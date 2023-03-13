@@ -57,12 +57,12 @@ class User {
 	}
 
 	// to save a task in db
-	static async save_task(task_name, description, due_date, date_creation, status, tag, priority, userId){
+	static async save_task(task_name, description, due_date, date_creation, tag, priority, userId){
 		const client = await pool.connect();
 		try {
 			const result = await client.query(
 				'INSERT INTO task (task_name, description, due_date, date_creation, status, tag, priority, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING task_id',
-				[task_name, description, due_date, date_creation, status, tag, priority, userId]
+				[task_name, description, due_date, date_creation, 'todo', tag, priority, userId]
 			);
 			return result.rows[0];
 		} 

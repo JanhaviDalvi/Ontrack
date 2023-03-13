@@ -7,6 +7,8 @@ const avatarRoutes = require('./routes/avatarRoutes');
 var cookieParser = require("cookie-parser")
 var flash = require('connect-flash');
 
+var User = require("./User");
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,24 +23,41 @@ app.use(flash());
 
 let sessionObj;
 app.use(function (req, res, next) {
-  res.locals.sessionObj = req.session;
-  next();
+	res.locals.sessionObj = req.session;
+	next();
 });
 
 app.get("/", (req, res) => {
-  if (req.session.userId) {
-    res.render('kanban', {userId: req.session.userId, username: req.session.username, avatar_id: req.session.avatar_id, avatar_character: req.session.avatar});
-  }
-  else {
-    res.render('login');
-  }
+	if (req.session.userId) {
+		res.render('kanban', {userId: req.session.userId, username: req.session.username, avatar_id: req.session.avatar_id, avatar_character: req.session.avatar});
+	}
+	else {
+		res.render('login');
+	}
 });
+
+app.get("/task", (req, res) => {
+	if (req.session.userId) {
+		res.render('task', {userId: req.session.userId});
+	}
+	else {
+		res.render('login');
+	}
+});
+
+app.post("/task", (req, res) => {
+	console.log(req.body);
+	const currentDate = new Date().toDateString();
+	User.save_task(req.body.cardName, req.body.cardDescription, req.body.cardDueDate, currentDate, req.body.cardTag, req.body.cardPriority, req.session.userId)
+  	res.send('Form submitted');
+});
+
 app.get('/habits', (req, res) => {
-  res.render('habits');
+	res.render('habits');
 });
 
 app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
+	console.log('Example app listening on port 3000!');
 });
 
 

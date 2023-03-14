@@ -11,11 +11,9 @@
 </head>
 
 <body>
-    <div class="container">
-        
-          
+    <div class="container">          
         <!-- user avatar -->
-        <div class="dropdown">
+        <div class="dropdown m-2">
             <a class="btn btn-secondary dropdown-toggle d-flex align-items-center" href="#" role="button"
                 id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="../images/<%= avatar_character %>.png" class="rounded-circle me-2" width="30" height="30"
@@ -71,6 +69,7 @@
                                     </div>
                                 </div>
                         <% } %>
+                        <div class="card-space"></div> <!-- Add space between each new card -->
                     <% }); %>
                 </div>
             </div>

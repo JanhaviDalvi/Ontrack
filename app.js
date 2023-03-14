@@ -67,7 +67,7 @@ app.post('/drag', async function(req, res) {
 });
 
 app.get('/habits', (req, res) => {
-	res.render('habits');
+	res.render('habits', {userId: req.session.userId, username: req.session.username, avatar_id: req.session.avatar_id, avatar_character: req.session.avatar});
 });
 
 app.listen(3000, () => {

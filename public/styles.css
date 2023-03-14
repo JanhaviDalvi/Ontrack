@@ -2,22 +2,23 @@
 .card-list {
   margin-bottom: 10px;
 }
-
 .column-box {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
 }
-
 .add-card-btn {
     position: absolute;
     right: 10px;
     
 }
-
 p{
   font-family:cursive;
 }
 .card {
   margin-bottom: 20px; /* Adjust the value as needed */
+}
+
+body{
+  background-color: #E8D5C4;
 }

@@ -151,7 +151,7 @@ column1.addEventListener("drop", function (event) {
     column1.appendChild(draggableElement);
     draggableElement.removeAttribute("id");
     console.log("heyy3");
-    let card_id = column1.getElementsByClassName("card_id")[0].textContent.trim();
+    let card_id = draggableElement.getElementsByClassName("card_id")[0].textContent.trim();
     column_changed("todo", card_id);
 });
 
@@ -169,7 +169,7 @@ column2.addEventListener("drop", function (event) {
     column2.appendChild(draggableElement);
     draggableElement.removeAttribute("id");
     console.log("heyy3");
-    let card_id = column2.getElementsByClassName("card_id")[0].textContent.trim();
+    let card_id = draggableElement.getElementsByClassName("card_id")[0].textContent.trim();
     column_changed("inprogress", card_id);
 });
 
@@ -187,7 +187,7 @@ column3.addEventListener("drop", function (event) {
     column3.appendChild(draggableElement);
     draggableElement.removeAttribute("id");
     console.log("heyy3");
-    let card_id = column3.getElementsByClassName("card_id")[0].textContent.trim();
+    let card_id = draggableElement.getElementsByClassName("card_id")[0].textContent.trim();
     column_changed("completed", card_id);
 });
 

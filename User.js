@@ -75,6 +75,36 @@ class User {
 	}
 
 	// to get tasks of todo, inprogress and completed of user
+	static async read_tasks(userId){
+		const client = await pool.connect();
+		try {
+			const result = await client.query(
+				'SELECT * FROM task WHERE user_id=$1', [userId]
+			);
+			return result.rows;
+		} 
+		catch(e){
+			console.log(e.message)
+		}
+		finally {
+			client.release();
+		}
+	}
+
+	static async update_status(status, task_id){
+		const client = await pool.connect();
+		try {
+			const result = await client.query(
+				'UPDATE task SET status = $1 WHERE task_id = $2', [status, task_id]
+			);
+		} 
+		catch(e){
+			console.log(e.message)
+		}
+		finally {
+			client.release();
+		}
+	}
 
 }
 

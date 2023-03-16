@@ -106,6 +106,41 @@ class User {
 		}
 	}
 
+	// to save a task in db
+	static async save_habit(habit_name, habit_tag, currentDate, userId){
+		const client = await pool.connect();
+		try {
+			const result = await client.query(
+				'INSERT INTO habit (habit_name, habit_tag, creation_date, user_id) VALUES ($1, $2, $3, $4) RETURNING habit_id',
+				[habit_name, habit_tag, currentDate, userId]
+			);
+			return result.rows[0];
+		} 
+		catch(e){
+			console.log(e.message)
+		}
+		finally {
+			client.release();
+		}
+	}
+
+	// to get tasks of todo, inprogress and completed of user
+	static async read_habits(userId){
+		const client = await pool.connect();
+		try {
+			const result = await client.query(
+				'SELECT * FROM habit WHERE user_id=$1', [userId]
+			);
+			return result.rows;
+		} 
+		catch(e){
+			console.log(e.message)
+		}
+		finally {
+			client.release();
+		}
+	}
+
 }
 
 module.exports = User;

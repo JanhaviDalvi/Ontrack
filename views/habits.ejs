@@ -26,13 +26,45 @@
                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
             </ul>
         </div>
-        <h1 class="text-center my-3">Ontrack - Habit Tracking</h1>
+        <h1 class="text-center my-3">Ontrack - Habit Tracking
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-calendar2-check-fill" viewBox="0 0 16 16">
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zm-2.6 5.854a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+            </svg>
+        </h1>
         <div class="row">
             <!-- todo -->
             <div class="col-4">
-                <h2>Habits</h2>
+                <h2>Habits
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                        <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                        <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                    </svg>
+                </h2>
                 <div class="column-box" id="habit_column">
-                    
+                    <% habits.forEach(function(list) { %>
+                            <div class="card">
+                                <div class="card-header">
+                                    <%= list.habit_name %>
+                                </div>
+                                <div class="card_id" style="display:none">
+                                    <%= list.habit_id %>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card_tag">
+                                        Tag: <%= list.habit_tag %>
+                                    </div>
+                                    <div class="card_streak" id="habit_streak">
+                                    Streak: <span id="streak_value"><%= list.streak %></span>
+                                    </div>
+                                    <div class="card_creation_date">
+                                        Creation Date: <%= list.creation_date %>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="button" class="btn btn-sm btn-success" id="mark_done">Mark as Done</button>
+                                </div>
+                            </div>
+                    <% }); %>
                 </div>
             </div>
         </div>
@@ -61,7 +93,7 @@
 
           <!-- Modal -->
           <div style="margin-top: 20px;"></div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> New</button>
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> New</button> -->
         
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -83,7 +115,7 @@
                                 <label for="cardTag" class="col-form-label"> Tag:</label>
                                 <input type="text" class="form-control" id="habitTag">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="cardPriority" class="col-form-label"> Priority:</label>
                                 <select class="form-control" id="habitPriority">
                                     <option value="">Select Priority</option>
@@ -91,7 +123,7 @@
                                     <option value="medium">Medium</option>
                                     <option value="low">Low</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <!-- <div class="form-group">
                                 <label for="habitStreak" class="col-form-label">Streak:</label>
                                 <input type="text" class="form-control" id="habitStreak">
@@ -103,12 +135,13 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closecard">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closecard">Close</button>
                         <button type="button" class="btn btn-primary" id="submitCard">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
+        <a href="/addhabit" class="btn btn-primary mt-4">Add Habit</a>
     </div> 
     
 

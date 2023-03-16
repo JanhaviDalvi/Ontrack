@@ -66,13 +66,42 @@ app.post('/drag', async function(req, res) {
 	await User.update_status(column, task_id);
 });
 
-app.get('/habits', (req, res) => {
-	res.render('habits', {userId: req.session.userId, username: req.session.username, avatar_id: req.session.avatar_id, avatar_character: req.session.avatar});
+app.get('/habits', async (req, res) => {
+	if (req.session.userId) {
+		var user_habits = await User.read_habits(req.session.userId);
+		console.log(user_habits);
+		res.render('habits', {habits: user_habits, userId: req.session.userId, username: req.session.username, avatar_id: req.session.avatar_id, avatar_character: req.session.avatar});
+	}
+	else {
+		res.render('login');
+	}
 });
 
 app.listen(3000, () => {
 	console.log('Example app listening on port 3000!');
 });
+
+
+app.get("/addhabit", (req, res) => {
+	if (req.session.userId) {
+		res.render('addhabit', {userId: req.session.userId});
+	}
+	else {
+		res.render('login');
+	}
+});
+
+app.post("/addhabit", async (req, res) => {
+	console.log(req.body);
+	const currentDate = new Date().toDateString();
+	let result = await User.save_habit(req.body.habitName, req.body.habitTag, currentDate,  req.session.userId)
+	// var user_tasks = await User.read_tasks(req.session.userId);
+	// console.log(user_tasks);
+	// res.render('kanban', {tasks: user_tasks, userId: req.session.userId, username: req.session.username, avatar_id: req.session.avatar_id, avatar_character: req.session.avatar});
+	console.log("habit saved");
+	res.redirect("/habits");
+});
+
 
 
 module.exports = sessionObj;

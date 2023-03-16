@@ -57,7 +57,8 @@
                                     Streak: <span id="streak_value"><%= list.streak %></span>
                                     </div>
                                     <div class="card_creation_date">
-                                        Creation Date: <%= list.creation_date %>
+                                        <% var options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }; %>
+                                        Creation Date: <%= list.creation_date.toLocaleDateString("en-US", options); %>
                                     </div>
                                 </div>
                                 <div class="card-footer">

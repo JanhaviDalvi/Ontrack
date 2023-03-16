@@ -36,9 +36,9 @@
         </h1>
         <br>
         <select id="sort-select">
-            <option value="">Select Sort By</option>
+            <option value="none">Select Sort By</option>
             <option value="priority">Priority</option>
-            <option value="due-date">Due Date</option>
+            <option value="due_date">Due Date</option>
         </select>
 
         <div class="row">
@@ -70,7 +70,8 @@
                                         Priority: <%= list.priority %>
                                         </div>
                                         <div class="card_due_date">
-                                            Due Date: <%= list.due_date %>
+                                            <% var options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }; %>
+                                            Due Date: <%= list.due_date.toLocaleDateString("en-US", options); %>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +108,8 @@
                                         Priority: <%= list.priority %>
                                         </div>
                                         <div class="card_due_date">
-                                            Due Date: <%= list.due_date %>
+                                            <% var options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }; %>
+                                            Due Date: <%= list.due_date.toLocaleDateString("en-US", options); %>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +145,8 @@
                                         Priority: <%= list.priority %>
                                         </div>
                                         <div class="card_due_date">
-                                            Due Date: <%= list.due_date %>
+                                            <% var options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }; %>
+                                            Due Date: <%= list.due_date.toLocaleDateString("en-US", options); %>
                                         </div>
                                     </div>
                                 </div>

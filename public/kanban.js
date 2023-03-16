@@ -101,6 +101,17 @@ column3.addEventListener("drop", function (event) {
 const sort = document.getElementById("sort-select");
 sort.addEventListener("change", function () {
     let sortBy = sort.value;
+    $.ajax({
+		type: 'POST',
+		url: '/sortby',
+		data: { sort: sortBy },
+		success: function(response) {
+		  console.log('sort value sent');
+		},
+		error: function(error) {
+		  console.log('Error in sending sort value');
+		}
+	});
     // var columns = [column1, column2, column3];
     // for(let i = 0; i < columns.length; i++){
     //     sort_cards(columns[i], sortBy);

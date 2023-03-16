@@ -11,11 +11,10 @@ var User = require("./User");
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));//during form handlling(post/get)
 app.use(express.static('public'));
 app.use(session({ secret: 'your-secret-key', resave: false, saveUninitialized: true, cookie: { secure: false } }));
 app.set("view engine", "ejs");
-app.use(express.static('public'));
 app.use('/', authRoutes);
 app.use('/', avatarRoutes);
 app.use(cookieParser("your-secret-key"));
@@ -29,8 +28,15 @@ app.use(function (req, res, next) {
 
 app.get("/", async (req, res) => {
 	if (req.session.userId) {
-		var user_tasks = await User.read_tasks(req.session.userId);
-		console.log(user_tasks);
+		var user_tasks;
+		if(req.session.sort == 'none'){
+			user_tasks = await User.read_tasks(req.session.userId);
+			console.log(user_tasks);
+		}
+		else{
+			user_tasks = await User.sort_priority(req.session.userId);
+			console.log("usertasks:", user_tasks);
+		}
 		res.render('kanban', {tasks: user_tasks, userId: req.session.userId, username: req.session.username, avatar_id: req.session.avatar_id, avatar_character: req.session.avatar});
 	}
 	else {
@@ -77,8 +83,14 @@ app.get('/habits', async (req, res) => {
 	}
 });
 
-app.listen(3000, () => {
-	console.log('Example app listening on port 3000!');
+// when sort by option is changed in kanban board
+app.post('/sortby', async function(req, res) {
+	var sort = req.body.sort;
+	console.log('ajax sort:', sort);
+	req.session.sort = sort;
+	res.redirect('/');
+	// res.render('kanban', {tasks: user_tasks, userId: req.session.userId, username: req.session.username, avatar_id: req.session.avatar_id, avatar_character: req.session.avatar});
+	// res.redirect(`/?tasks=${user_tasks}&userId=${req.session.userId}&username=${req.session.username}&avatar_id=${req.session.avatar_id}&avatar_character=${req.session.avatar}`);
 });
 
 
@@ -103,5 +115,8 @@ app.post("/addhabit", async (req, res) => {
 });
 
 
+app.listen(3000, () => {
+	console.log('Example app listening on port 3000!');
+});
 
 module.exports = sessionObj;

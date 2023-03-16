@@ -14,7 +14,7 @@ class User {
 		this.password = password;
 		this.id = id;
 	}
-
+//signup 
 	async save() {
 		const hashedPassword = await bcrypt.hash(this.password, 10);
 		console.log(hashedPassword);
@@ -26,7 +26,6 @@ class User {
 				[this.email, hashedPassword]
 			);
 			this.id = result.rows[0].id;
-			console.log('jkdshj');
 		} 
 		catch(e){
 			console.log(e.message)
@@ -140,6 +139,39 @@ class User {
 			client.release();
 		}
 	}
+
+	static async sort_priority(userId){
+		const client = await pool.connect();
+		try {
+			const result = await client.query(
+				'SELECT * FROM task WHERE user_id = $1 ORDER BY priority ASC', [userId]
+			);
+			return result.rows;
+		} 
+		catch(e){
+			console.log(e.message)
+		}
+		finally {
+			client.release();
+		}
+	}
+
+	// static async sort_priority(userId){
+	// 	const client = await pool.connect();
+	// 	try {
+	// 		const result = await client.query(
+	// 			'SELECT * FROM task WHERE user_id = $1 ORDER BY priority ASC', [userId]
+	// 		);
+	// 		console.log(result.rows);
+	// 		return result.rows;
+	// 	} 
+	// 	catch(e){
+	// 		console.log(e.message)
+	// 	}
+	// 	finally {
+	// 		client.release();
+	// 	}
+	// }
 
 }
 
